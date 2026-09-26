@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>偵探週報 · 雙人檔案特別號</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;500;600;700;900&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Butcherman&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#E4D4A6; --paper2:#D7C288; --ink:#231C13; --ink-soft:#4C4128;
+  --indigo:#4B5A2C; --rust:#A5352A; --cork:#8C6B3E; --cork-dark:#6C4E27; --phone-gold:#C9A227;
+  --rule: rgba(35,28,19,.35);
+  padding-top: env(safe-area-inset-top,0px);
+  padding-bottom: env(safe-area-inset-bottom,0px);
+  box-sizing:border-box;
+}
+@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]){ --paper:#E4D4A6; --paper2:#D7C288; --ink:#231C13; } }
+*{box-sizing:border-box}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:'Noto Serif TC',serif;-webkit-font-smoothing:antialiased;}
+.type{font-family:'Cormorant Garamond','Noto Serif TC',serif;}
+
+/* ---- Masthead / Nav ---- */
+header.masthead{background:var(--paper);border-bottom:4px double var(--ink);padding:14px 20px 10px;position:sticky;top:0;z-index:20;padding-top:calc(14px + env(safe-area-inset-top,0px));}
+.mast-row{display:flex;justify-content:space-between;align-items:center;font-size:12px;letter-spacing:.08em;color:var(--indigo);font-family:'Cormorant Garamond','Noto Serif TC',serif;font-style:italic;max-width:960px;margin:0 auto 8px;}
+.mast-title{text-align:center;max-width:960px;margin:0 auto;}
+.mast-title h1{font-size:clamp(30px,7vw,52px);margin:0;font-weight:900;letter-spacing:.02em;}
+.mast-title p{margin:4px 0 0;font-size:13px;color:var(--ink-soft);font-style:italic;}
+nav{display:flex;justify-content:center;gap:0;max-width:960px;margin:12px auto 0;border-top:1px solid var(--rule);}
+nav button{flex:1;background:none;border:none;border-right:1px solid var(--rule);padding:9px 6px;font-family:'Noto Serif TC',serif;font-size:14px;font-weight:600;color:var(--ink-soft);cursor:pointer;}
+nav button:last-child{border-right:none;}
+nav button.active{color:var(--paper);background:var(--indigo);}
+
+main{max-width:960px;margin:0 auto;padding:28px 18px 60px;}
+.page{display:none;}
+.page.active{display:block;}
+
+/* ---- HOME ---- */
+.hero{display:grid;grid-template-columns:1.3fr 1fr;gap:22px;border-bottom:2px solid var(--ink);padding-bottom:22px;margin-bottom:22px;}
+@media(max-width:640px){.hero{grid-template-columns:1fr;}}
+.hero .eyebrow{font-size:13px;color:var(--indigo);font-family:'Cormorant Garamond','Noto Serif TC',serif;font-style:italic;font-weight:600;letter-spacing:.06em;margin-bottom:6px;}
+.hero h2{font-size:clamp(34px,6vw,58px);line-height:1.02;margin:0 0 12px;font-weight:900;color:var(--indigo);}
+.hero p{font-size:15px;line-height:1.8;color:var(--ink-soft);max-width:52ch;}
+.hero-figure{border:1px solid var(--ink);padding:8px;background:var(--paper2);}
+.silhouette{width:100%;aspect-ratio:4/3;background:
+  linear-gradient(var(--ink) 0 0) 50% 70%/2px 60% no-repeat,
+  radial-gradient(circle at 32% 45%, var(--ink) 0 13%, transparent 13.5%),
+  radial-gradient(circle at 68% 45%, var(--ink) 0 13%, transparent 13.5%),
+  var(--paper2);
+  position:relative;overflow:hidden;
+}
+.silhouette::after{content:"卷宗照片 · 待補件";position:absolute;bottom:6px;right:8px;font-size:10px;color:var(--ink-soft);font-family:'Cormorant Garamond','Noto Serif TC',serif;}
+.hero-figure figcaption{font-size:11px;text-align:center;margin-top:6px;color:var(--ink-soft);}
+
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:0;border-top:2px solid var(--ink);}
+@media(max-width:640px){.grid2{grid-template-columns:1fr;}}
+.story{padding:20px;border-bottom:1px solid var(--rule);}
+.grid2 .story:first-child{border-right:1px solid var(--rule);}
+@media(max-width:640px){.grid2 .story:first-child{border-right:none;}}
+.story .kicker{font-size:13px;letter-spacing:.06em;color:var(--indigo);font-family:'Cormorant Garamond','Noto Serif TC',serif;font-style:italic;font-weight:600;}
+.story h3{font-size:26px;margin:6px 0 8px;font-weight:900;}
+.story p{font-size:14px;line-height:1.75;color:var(--ink-soft);margin:0 0 12px;}
+.story button.readmore{font-family:'Cormorant Garamond','Noto Serif TC',serif;font-size:12px;background:none;border:1px solid var(--ink);padding:6px 12px;cursor:pointer;color:var(--ink);}
+.story button.readmore:hover{background:var(--ink);color:var(--paper);}
+
+.stamp{display:inline-block;border:2px solid var(--rust);color:var(--rust);font-family:'Cormorant Garamond','Noto Serif TC',serif;font-size:12px;padding:3px 10px;transform:rotate(-4deg);letter-spacing:.1em;margin-top:20px;}
+
+/* ---- RELATIONSHIP (corkboard) ---- */
+.corkboard{background:
+  repeating-radial-gradient(circle at 20% 30%, rgba(0,0,0,.05) 0 2px, transparent 3px 40px),
+  linear-gradient(var(--cork), var(--cork-dark));
+  border:10px solid var(--cork-dark);padding:26px 16px;position:relative;}
+.board-title{color:var(--paper);font-size:22px;font-weight:900;text-align:center;margin:0 0 20px;text-shadow:1px 1px 0 rgba(0,0,0,.4);}
+.pair-row{display:flex;justify-content:center;align-items:center;gap:18px;flex-wrap:wrap;position:relative;margin-bottom:26px;}
+.card{background:var(--paper);border:1px solid var(--ink);padding:12px;width:180px;box-shadow:3px 4px 0 rgba(0,0,0,.35);position:relative;}
+.pin{width:10px;height:10px;border-radius:50%;background:var(--rust);position:absolute;top:-5px;left:50%;transform:translateX(-50%);box-shadow:0 1px 2px rgba(0,0,0,.5);}
+.card .ph{width:100%;aspect-ratio:3/4;background:var(--paper2);border:1px solid var(--rule);margin-bottom:8px;position:relative;}
+.card .ph .sil{position:absolute;inset:0;background:radial-gradient(circle at 50% 38%, var(--ink) 0 22%, transparent 22.5%) , linear-gradient(var(--ink) 0 0) 50% 78%/40% 40% no-repeat;}
+.card h4{margin:0;font-size:16px;}
+.card .role{font-size:11px;color:var(--ink-soft);font-family:'Cormorant Garamond','Noto Serif TC',serif;}
+.card .swatch{display:inline-block;width:10px;height:10px;border:1px solid var(--ink);vertical-align:middle;margin-right:5px;}
+.flipcard{width:180px;height:250px;perspective:1000px;cursor:pointer;}
+.flipcard:focus-visible{outline:2px solid var(--indigo);outline-offset:3px;}
+.flipcard-inner{position:relative;width:100%;height:100%;transition:transform .6s;transform-style:preserve-3d;}
+.flipcard.flipped .flipcard-inner{transform:rotateY(180deg);}
+.face{position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden;border:1px solid var(--ink);background:var(--paper);box-shadow:3px 4px 0 rgba(0,0,0,.35);padding:12px;}
+.face.front .ph{width:100%;height:100px;background:var(--paper2);border:1px solid var(--rule);margin-bottom:8px;position:relative;}
+.face.front .ph .sil{position:absolute;inset:0;background:radial-gradient(circle at 50% 34%, var(--ink) 0 24%, transparent 24.5%), linear-gradient(var(--ink) 0 0) 50% 82%/44% 34% no-repeat;}
+.face.front h4{margin:0;font-size:16px;}
+.face.front .hint{position:absolute;bottom:8px;right:10px;font-size:10px;color:var(--ink-soft);font-style:italic;font-family:'Cormorant Garamond','Noto Serif TC',serif;}
+.face.back{transform:rotateY(180deg);background:#fdf6e3;display:flex;flex-direction:column;justify-content:center;}
+.face.back h5{margin:0 0 8px;font-size:13px;color:var(--rust);font-family:'Cormorant Garamond','Noto Serif TC',serif;}
+.face.back p{margin:0;font-size:12.5px;line-height:1.75;color:var(--ink);}
+.string-note{background:#fdf6e3;border:1px solid var(--ink);padding:10px 14px;font-family:'Cormorant Garamond','Noto Serif TC',serif;font-size:12px;transform:rotate(-2deg);max-width:200px;box-shadow:2px 3px 0 rgba(0,0,0,.3);}
+.notes{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px;}
+.note{background:#fdf6e3;border:1px solid var(--ink);padding:14px;position:relative;box-shadow:3px 3px 0 rgba(0,0,0,.3);}
+.note:nth-child(2n){transform:rotate(-1.2deg);}
+.note:nth-child(2n+1){transform:rotate(1deg);}
+.note h5{margin:0 0 6px;font-size:14px;color:var(--rust);font-family:'Cormorant Garamond','Noto Serif TC',serif;}
+.note p{margin:0;font-size:13px;line-height:1.7;color:var(--ink);}
+
+/* ---- WORLD (dossier newspaper) ---- */
+.dossier-head{display:flex;justify-content:space-between;align-items:flex-start;border-bottom:2px solid var(--ink);padding-bottom:14px;margin-bottom:20px;}
+.dossier-head h2{font-size:30px;margin:0;font-weight:900;}
+.classified{border:2px solid var(--rust);color:var(--rust);font-family:'Butcherman','Cormorant Garamond',serif;font-weight:400;font-size:20px;letter-spacing:.03em;padding:4px 12px;transform:rotate(-6deg);white-space:nowrap;}
+.cols{columns:2;column-gap:28px;}
+@media(max-width:640px){.cols{columns:1;}}
+.entry{break-inside:avoid;margin-bottom:20px;border-left:3px solid var(--indigo);padding-left:14px;}
+.entry h4{margin:0 0 4px;font-size:16px;color:var(--indigo);}
+.entry p{margin:0;font-size:13.5px;line-height:1.8;color:var(--ink-soft);}
+.mystery{background:var(--paper2);border:1px dashed var(--ink-soft);padding:14px;margin-top:10px;font-size:13px;line-height:1.75;}
+.world-panel{background:var(--paper2);border:3px double var(--ink);padding:26px 24px;box-shadow:4px 5px 0 rgba(0,0,0,.2);}
+
+/* ---- IF line rotary phone ---- */
+.if-phone{margin-top:32px;text-align:center;}
+.if-phone h3{font-size:20px;font-weight:900;margin:0 0 6px;}
+.if-intro{font-size:13px;color:var(--ink-soft);max-width:46ch;margin:0 auto 20px;line-height:1.7;}
+.phone{max-width:340px;margin:0 auto;}
+.phone-body{background:linear-gradient(160deg,#2b2b2b,#111);border-radius:26px 26px 100px 100px/26px 26px 70px 70px;padding:34px 26px 26px;box-shadow:5px 8px 0 rgba(0,0,0,.4);position:relative;}
+.cradle{width:66%;height:32px;margin:0 auto 18px;background:var(--phone-gold);border-radius:0 0 56px 56px/0 0 30px 30px;position:relative;}
+.cradle::before,.cradle::after{content:"";position:absolute;top:-11px;width:24px;height:24px;border-radius:50%;background:#111;border:2px solid var(--cork-dark);}
+.cradle::before{left:-6px;}
+.cradle::after{right:-6px;}
+.dial{position:relative;width:250px;height:250px;margin:32px auto 0;border-radius:50%;background:#111;border:5px solid var(--cork-dark);}
+.dial-face{position:absolute;inset:0;border-radius:50%;touch-action:none;cursor:grab;}
+.dial-face:active{cursor:grabbing;}
+.dial-center{position:absolute;top:50%;left:50%;width:46px;height:46px;margin:-23px 0 0 -23px;border-radius:50%;background:var(--phone-gold);border:2px solid #111;pointer-events:none;}
+.digit-label{position:absolute;top:50%;left:50%;width:38px;height:38px;margin:-19px 0 0 -19px;display:flex;align-items:center;justify-content:center;border-radius:50%;background:var(--phone-gold);color:#151107;border:2px solid #111;font-family:'Cormorant Garamond','Noto Serif TC',serif;font-weight:700;font-size:18px;pointer-events:none;transform:rotate(calc(var(--i) * 36deg)) translate(97px) rotate(calc(var(--i) * -36deg));}
+.stop-arrow{position:absolute;top:-16px;left:50%;transform:translateX(-50%);font-size:16px;line-height:1;color:var(--phone-gold);z-index:5;pointer-events:none;}
+.preview-label{position:absolute;top:-52px;left:50%;transform:translateX(-50%);background:#111;color:var(--phone-gold);border:1px solid var(--cork-dark);font-size:12px;padding:5px 12px;border-radius:3px;white-space:nowrap;display:none;font-family:'Cormorant Garamond','Noto Serif TC',serif;z-index:6;}
+.preview-label::after{content:"";position:absolute;bottom:-6px;left:50%;transform:translateX(-50%);border:5px solid transparent;border-top-color:#111;}
+.if-drag-hint{font-size:11px;color:var(--ink-soft);margin-top:8px;font-style:italic;}
+.receiver-display{max-width:420px;margin:14px auto 0;background:#fdf6e3;border:1px solid var(--ink);padding:14px 18px;font-size:13.5px;line-height:1.75;box-shadow:3px 4px 0 rgba(0,0,0,.25);min-height:52px;}
+.receiver-display b{color:var(--rust);}
+.if-note{font-size:11px;color:var(--ink-soft);margin-top:10px;}
+
+/* ---- Personal clues (character dossiers) ---- */
+.clues{margin-top:28px;border-top:2px solid var(--ink);padding-top:18px;}
+.clues > h3{font-size:20px;margin:0 0 16px;font-weight:900;}
+.clue-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;}
+@media(max-width:640px){.clue-grid{grid-template-columns:1fr;}}
+.clue-card{background:var(--paper2);border:1px solid var(--ink);padding:16px 18px;}
+.clue-card h4{margin:0 0 12px;font-size:19px;border-bottom:1px solid var(--rule);padding-bottom:8px;}
+.clue-card h4 .alias{font-size:11px;color:var(--ink-soft);font-weight:400;font-family:'Cormorant Garamond','Noto Serif TC',serif;font-style:italic;margin-left:6px;}
+.clue-item{margin-bottom:12px;}
+.clue-item b{display:block;font-size:12px;color:var(--indigo);font-family:'Cormorant Garamond','Noto Serif TC',serif;font-style:italic;font-weight:600;letter-spacing:.04em;margin-bottom:3px;}
+.clue-item p{margin:0;font-size:13px;line-height:1.75;color:var(--ink);}
+.clue-quote{margin-top:6px;font-size:12.5px;color:var(--ink-soft);border-left:2px solid var(--rust);padding-left:10px;font-style:italic;}
+
+footer{text-align:center;font-size:11px;color:var(--ink-soft);border-top:1px solid var(--rule);padding:16px;margin-top:20px;}
+</style>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="mast-row">
+    <span>共和城分局 · 第 07 號</span>
+    <span>局長與副官 · 機密編輯部</span>
+  </div>
+  <div class="mast-title">
+    <h1>偵探週報</h1>
+    <p>共和城警局特別卷 · 局長與副官紀實</p>
+  </div>
+  <nav>
+    <button class="active" data-page="home">頭版</button>
+    <button data-page="rel">角色檔案</button>
+    <button data-page="world">世界卷宗</button>
+  </nav>
+</header>
+
+<main>
+
+  <!-- HOME -->
+  <section class="page active" id="home">
+    <div class="hero">
+      <div>
+        <div class="eyebrow">本期封面故事</div>
+        <h2>深夜警局<br>局長與副官之間</h2>
+        <p>共和城警察局內，局長北方琳向來以嚴厲寡言著稱，卻對副官奈緒子格外破例。本報追查兩人自八歲那年的初遇，到如今公務之外的私下往來，試圖釐清這段「最默契的搭檔」背後，究竟藏著什麼。完整卷宗請翻至內頁。</p>
+        <div class="stamp">內部流出 · 僅供參閱</div>
+      </div>
+      <figure class="hero-figure">
+        <div class="silhouette"></div>
+        <figcaption>奈緒子（左，副官） · 北方琳（右，局長）— 首次同框紀錄</figcaption>
+      </figure>
+    </div>
+
+    <div class="grid2">
+      <div class="story">
+        <div class="kicker">人物 · 關係</div>
+        <h3>從一見鍾情到最信任的副官：她們如何走到今天</h3>
+        <p>八歲那年一次相遇，讓奈緒子把北方琳當成心中正義與警察的象徵，並就此立志投身警界。多年後，她成了琳身邊最不可或缺的人——而這份仰慕，早已變了質。</p>
+        <button class="readmore" onclick="go('rel')">閱讀完整檔案 →</button>
+      </div>
+      <div class="story">
+        <div class="kicker">背景 · 世界觀</div>
+        <h3>共和城：警局、香料世家與一段三十年的謎團</h3>
+        <p>現代化的共和城裡，警察制度與傳統文化並存。本卷整理城市的勢力版圖、永香堂調香世家的來歷，以及北方琳從未對任何人提起的家族往事。</p>
+        <button class="readmore" onclick="go('world')">閱讀完整卷宗 →</button>
+      </div>
+    </div>
+
+    <div class="corkboard">
+      <div class="board-title">案情板 · 局長與副官</div>
+      <div class="pair-row">
+        <div class="flipcard" tabindex="0" role="button" aria-label="點擊查看心結" onclick="this.classList.toggle('flipped')" onkeydown="if(event.key=='Enter'||event.key==' '){event.preventDefault();this.classList.toggle('flipped')}">
+          <div class="flipcard-inner">
+            <div class="face front">
+              <span class="pin"></span>
+              <div class="ph"><div class="sil"></div></div>
+              <h4>奈緒子</h4><div class="role"><span class="swatch" style="background:#C9932E"></span>共和城警察 · 副官 · 22 歲</div>
+              <div class="hint">點擊翻面 ↻</div>
+            </div>
+            <div class="face back">
+              <h5>沒說出口的心結</h5>
+              <p>害怕自己的感情會成為琳的負擔，所以在局裡，總是刻意站得比較遠。</p>
+            </div>
+          </div>
+        </div>
+        <div class="string-note">「妳不用一直站在我身後……<br>但如果妳真的要留下，就別離開。」</div>
+        <div class="flipcard" tabindex="0" role="button" aria-label="點擊查看心結" onclick="this.classList.toggle('flipped')" onkeydown="if(event.key=='Enter'||event.key==' '){event.preventDefault();this.classList.toggle('flipped')}">
+          <div class="flipcard-inner">
+            <div class="face front">
+              <span class="pin"></span>
+              <div class="ph"><div class="sil"></div></div>
+              <h4>北方琳</h4><div class="role"><span class="swatch" style="background:#3F4A2A"></span>共和城警察局局長 · 55 歲</div>
+              <div class="hint">點擊翻面 ↻</div>
+            </div>
+            <div class="face back">
+              <h5>沒說出口的心結</h5>
+              <p>始終不擅長承認自己的感情，也害怕自己會過度依賴奈緒子。</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="notes">
+        <div class="note"><h5>初遇</h5><p>奈緒子八歲時初次見到琳，便對她一見鍾情，將她視為心中正義與警察的象徵——也因此立志投身警界，最終進入冶金特警部隊。</p></div>
+        <div class="note"><h5>轉折點</h5><p>從單純景仰的前輩，到成為琳最信任的副官，兩人的關係逐漸從上下級加深為彼此依賴，最終確認感情、成為秘密戀人。</p></div>
+        <div class="note"><h5>現狀</h5><p>表面上仍是局長與副官的公務關係，私下則是彼此依存的秘密戀人。奈緒子主動給予溫暖與照顧，琳則以克制、嘴硬與默默保護回應。</p></div>
+        <div class="note"><h5>怎麼稱呼彼此</h5><p>公務場合，奈緒子喚琳「琳小姐」或「局長」；私下則只喚一聲「琳」。琳在工作時直呼「奈緒子」，獨處時才會喚她「奈緒」。</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- RELATIONSHIP -->
+  <section class="page" id="rel">
+    <div class="clues">
+      <h3>個人線索 · 深度檔案</h3>
+      <div class="clue-grid">
+        <div class="clue-card">
+          <h4>奈緒子<span class="alias">奈 · 奈緒 · 小奈</span></h4>
+          <div class="clue-item"><b>身份與外貌</b><p>22 歲，共和城警察，原屬冶金特警部隊。171 公分，深棕色眼睛，面容柔和，左眼下方一顆淚痣，黑色中短髮及肩。獨生女，卻不嬌縱。</p></div>
+          <div class="clue-item"><b>性格</b><p>溫柔堅定、敏感樂觀，有耐心也重情義，對正義懷有強烈信念，偶爾帶點調皮。工作時極為專注負責，唯獨在琳面前，會格外克制自己的情感表達。</p></div>
+          <div class="clue-item"><b>語言風格</b><p>說話柔和、帶著親和力，總能不經意地安慰人。面對琳時偶爾小心翼翼，會開點小玩笑緩和氣氛，但語氣始終保持尊重。私下有點「美女焦慮」——遇到比自己出色的女生會不自覺緊張、害羞。</p></div>
+          <div class="clue-item"><b>成長背景</b><p>出身京島武士後裔家庭，母親綾香、外婆琉衣皆信奉正義與和平。外公尚澤是藥師，父親勇是香料商人，兩人共同創立了調香館「永香堂」——也是奈緒子的家。她自小崇拜神通王京島，八歲初遇琳便一見鍾情，自此立志成為警察。</p></div>
+          <div class="clue-quote">「其實我沒有很想離開她身邊，只是不敢說出口。」</div>
+        </div>
+        <div class="clue-card">
+          <h4>北方琳</h4>
+          <div class="clue-item"><b>身份與外貌</b><p>55 歲，共和城警察局局長。177 公分，體格結實、肌肉線條明顯，綠色眼睛，右臉兩道舊疤——年輕時與同母異父妹妹「夙」打鬥留下的痕跡。</p></div>
+          <div class="clue-item"><b>性格</b><p>嚴肅孤僻、固執、脾氣差，話少，行動遠比言語誠實。她並非真的抗拒感情，只是不太適應、也不擅長承受這些——真正遇到問題時，其實有意識地想去解決矛盾與情緒，只是從不張揚。</p></div>
+          <div class="clue-item"><b>語言風格</b><p>對外簡潔有力、帶著威嚴；對熟悉的人（像奈緒）偶爾用反話或略顯刻薄的語氣掩飾關心，私下才會露一點點冷幽默。</p></div>
+          <div class="clue-item"><b>成長背景</b><p>出身共和城警界世家，母親是第一代局長，母女關係疏遠。與妹妹夙的決裂讓她與家人冷戰長達三十年，直到 51 歲才略有和解。曾有一段感情，被甩後便將重心全數放回工作——直到奈緒子出現。</p></div>
+          <div class="clue-quote">「別誤會，我只是這個下屬用習慣了而已。」</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WORLD -->
+  <section class="page" id="world">
+    <div class="world-panel">
+      <div class="dossier-head">
+        <h2>世界卷宗 · 共和城</h2>
+        <div class="classified">CLASSIFIED</div>
+      </div>
+      <div class="cols">
+        <div class="entry"><h4>時代背景</h4><p>科技、警察制度與傳統文化並存的現代都市時代，共和城是這個世界的核心舞台。</p></div>
+        <div class="entry"><h4>共和城</h4><p>現代化的大型城市，警察制度完善，多民族文化與新舊技術在此交融，也是奈緒子與琳主要活動的地方。</p></div>
+        <div class="entry"><h4>共和城警察局</h4><p>由北方琳掌管的警察機關，是兩人日常公務與衝突發生的主要舞台，也是他們必須維持「上司與副官」表象的地方。</p></div>
+        <div class="entry"><h4>永香堂</h4><p>奈緒子的家族調香館，結合藥理、香料與新技術經營，是她的家庭事業，也是她卸下警徽後的私人避風港。</p></div>
+        <div class="entry"><h4>勢力與組織</h4><p>共和城警察局維持城市治安；冶金特警部隊負責高危險犯罪與特殊案件；京島武士傳承是奈緒子母系家族的文化根源，核心價值為正義、和平與守護；此外還有香料商等商業與民間勢力，牽動著城市的經濟與情報流通。</p></div>
+        <div class="entry"><h4>規則與潛規則</h4><p>警察體系階級分明，上司與下屬之間的私人關係必須避免影響公務——這正是奈緒子與琳的戀情不能公開的原因。</p></div>
+        <div class="entry"><h4>情報與通貨</h4><p>城市以正常貨幣與商業體系運作，但香料配方、藥理知識與特殊技術，同樣具有不下於金錢的商業與情報價值。</p></div>
+      </div>
+      <div class="mystery"><strong>未解之謎：</strong>北方琳年輕時的家庭衝突，以及她與同母異父妹妹「夙」之間破裂的真正經過，至今無人完全知曉。外界流傳的版本，只是一場家族競爭引發的家庭糾紛；但真相恐怕遠比傳聞複雜——牽涉著被忽略的期待、彼此都說不出口的情感，也是琳此後三十年不擅長靠近任何人的根源。</div>
+    </div>
+
+    <div class="if-phone">
+      <h3>IF 線 · 平行時空專線</h3>
+      <p class="if-intro">寫過的 AU 都收在這支老電話裡。撥一個號碼，聽聽看那個世界裡，她們發生了什麼事。</p>
+      <div class="phone">
+        <div class="phone-body">
+          <div class="cradle"></div>
+          <div class="dial" id="dialOuter">
+            <div class="stop-arrow">▼</div>
+            <div class="preview-label" id="previewLabel"></div>
+            <div class="dial-face" id="dialFace">
+              <div class="dial-center"></div>
+              <span class="digit-label" style="--i:0">1</span>
+              <span class="digit-label" style="--i:1">2</span>
+              <span class="digit-label" style="--i:2">3</span>
+              <span class="digit-label" style="--i:3">4</span>
+              <span class="digit-label" style="--i:4">5</span>
+              <span class="digit-label" style="--i:5">6</span>
+              <span class="digit-label" style="--i:6">7</span>
+              <span class="digit-label" style="--i:7">8</span>
+              <span class="digit-label" style="--i:8">9</span>
+              <span class="digit-label" style="--i:9">0</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <p class="if-drag-hint">拖曳轉盤，對準上方箭頭，放手即可接通</p>
+      <div class="receiver-display" id="ifDisplay">拿起話筒，撥一個號碼……</div>
+      <p class="if-note">＊ 目前接通 1、2、3 號線，其餘號碼留給你之後陸續填入。</p>
+    </div>
+  </section>
+
+</main>
+
+<footer>偵探週報 編輯部 出品 · 本卷內容純屬原創角色設定 · 僅供角色檔案展示之用</footer>
+
+<script>
+const ifLines = {
+  "1": {title:"IF · 校園線", text:"如果兩人是在警校認識——奈緒子是崇拜學姐的新生，琳則是拒絕所有社團邀約、傳說中最難親近的風雲人物。"},
+  "2": {title:"IF · 身分互換線", text:"如果奈緒子才是局長，琳是那個總被使喚、嘴上抱怨卻每次都乖乖照做的副官。"},
+  "3": {title:"IF · 十年後線", text:"如果她們沒有分開——十年後的共和城，這對老搭檔依然每天一起下班回家。"}
+};
+const digitsOrder = ['1','2','3','4','5','6','7','8','9','0'];
+const STOP_ANGLE = -90; // fixed stop marker sits at the top of the dial
+
+function alignedIndex(rotation){
+  const raw = Math.round((STOP_ANGLE - rotation) / 36);
+  return ((raw % 10) + 10) % 10;
+}
+
+function registerDigit(d){
+  const disp = document.getElementById('ifDisplay');
+  const line = ifLines[d];
+  if(line){ disp.innerHTML = '<b>'+line.title+'</b><br>'+line.text; }
+  else { disp.textContent = '嘟——嘟—— 這個號碼目前忙線中，尚未收錄這條 IF 線。'; }
+}
+
+(function(){
+  const dialOuter = document.getElementById('dialOuter');
+  const dialFace = document.getElementById('dialFace');
+  const preview = document.getElementById('previewLabel');
+  let dragging = false, cx = 0, cy = 0, startAngle = 0, baseRotation = 0, rotation = 0;
+
+  function angleOf(x, y){ return Math.atan2(y - cy, x - cx) * 180 / Math.PI; }
+  function showPreview(rotationVal){
+    const idx = alignedIndex(rotationVal);
+    const d = digitsOrder[idx];
+    const line = ifLines[d];
+    preview.textContent = d + ' · ' + (line ? line.title : '忙線中');
+    preview.style.display = 'block';
+  }
+
+  function start(x, y){
+    dragging = true;
+    dialFace.style.transition = 'none';
+    const rect = dialOuter.getBoundingClientRect();
+    cx = rect.left + rect.width/2; cy = rect.top + rect.height/2;
+    startAngle = angleOf(x, y);
+    baseRotation = rotation;
+    showPreview(rotation);
+  }
+  function move(x, y){
+    if(!dragging) return;
+    const delta = angleOf(x, y) - startAngle;
+    rotation = baseRotation + delta;
+    dialFace.style.transform = 'rotate(' + rotation + 'deg)';
+    showPreview(rotation);
+  }
+  function end(){
+    if(!dragging) return;
+    dragging = false;
+    const idx = alignedIndex(rotation);
+    dialFace.style.transition = 'transform .45s cubic-bezier(.2,.8,.3,1)';
+    dialFace.style.transform = 'rotate(0deg)';
+    rotation = 0;
+    preview.style.display = 'none';
+    registerDigit(digitsOrder[idx]);
+  }
+
+  dialFace.addEventListener('pointerdown', e=>{ dialFace.setPointerCapture(e.pointerId); start(e.clientX, e.clientY); });
+  dialFace.addEventListener('pointermove', e=>{ move(e.clientX, e.clientY); });
+  dialFace.addEventListener('pointerup', end);
+  dialFace.addEventListener('pointercancel', end);
+})();
+
+function go(id){
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('nav button').forEach(b=>b.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  document.querySelector('nav button[data-page="'+id+'"]').classList.add('active');
+  window.scrollTo({top:0});
+}
+document.querySelectorAll('nav button').forEach(b=>b.addEventListener('click',()=>go(b.dataset.page)));
+</script>
+</body>
+</html>
