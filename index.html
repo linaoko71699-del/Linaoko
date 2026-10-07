@@ -440,6 +440,7 @@ html.eyecare #home .lead-sub{color:var(--ink);}
 
 <header class="masthead">
   <div class="mast-row">
+    <span class="mast-code">共和城總局出版</span>
     <div class="eye-toggle">
       <span class="eye-toggle-label" id="eyeLabel">淺色模式</span>
       <span class="eye-switch" id="eyeSwitch" role="button" tabindex="0" aria-label="切換深色模式" onclick="toggleEyeMode()" onkeydown="if(event.key=='Enter'||event.key==' '){event.preventDefault();toggleEyeMode()}"></span>
@@ -695,13 +696,13 @@ html.eyecare #home .lead-sub{color:var(--ink);}
         <line x1="45" y1="46" x2="14" y2="16"/>
       </svg>
 
-      <div class="board-card photo-card" style="left:14%;top:16%;--rot:-7deg;--w:clamp(140px,30vw,280px);z-index:6;transform:translate(calc(-50% + 50px), calc(-50% + 50px)) rotate(-7deg)" tabindex="0" role="button" aria-label="點擊查看時代背景" onclick="openCase('era')" onkeydown="if(event.key=='Enter'||event.key==' '){event.preventDefault();openCase('era')}">
+      <div class="board-card photo-card" style="left:14%;top:16%;--rot:-7deg;--w:clamp(140px,30vw,280px);z-index:6;transform:translate(calc(-50% + 50px), calc(-50% + 45px)) rotate(-7deg)" tabindex="0" role="button" aria-label="點擊查看時代背景" onclick="openCase('era')" onkeydown="if(event.key=='Enter'||event.key==' '){event.preventDefault();openCase('era')}">
         <div class="pin-dot"></div>
         <img class="photo-img" src="img_3bd66591.webp" alt="時代背景">
         <div class="cap">時代背景</div>
       </div>
 
-      <div class="board-card photo-card police-card" style="left:45%;top:46%;--rot:-1deg;--w:clamp(200px,45vw,420px);z-index:5;transform:translate(calc(-50% + 50px), calc(-50% + 50px)) rotate(-1deg)" tabindex="0" role="button" aria-label="點擊查看共和城警察局" onclick="openCase('police')" onkeydown="if(event.key=='Enter'||event.key==' '){event.preventDefault();openCase('police')}">
+      <div class="board-card photo-card police-card" style="left:45%;top:46%;--rot:-1deg;--w:clamp(200px,45vw,420px);z-index:5;transform:translate(calc(-50% + 50px), calc(-50% + 45px)) rotate(-1deg)" tabindex="0" role="button" aria-label="點擊查看共和城警察局" onclick="openCase('police')" onkeydown="if(event.key=='Enter'||event.key==' '){event.preventDefault();openCase('police')}">
         <div class="pin-dot"></div>
         <img class="photo-img" src="img_195f1e80.webp" alt="共和城警察局">
         <div class="cap">警察局</div>
@@ -826,7 +827,7 @@ function registerDigit(d){
   var dateEl = document.getElementById('mtsDate');
   var issueEl = document.getElementById('mtsIssue');
   if(dateEl) dateEl.textContent = d+'/'+m+'/'+y;
-  if(issueEl) issueEl.textContent = '警刊編號 PC1'+m+d;
+  if(issueEl) issueEl.textContent = 'PC1'+m+d;
 })();
 
 function go(id){
