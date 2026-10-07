@@ -26,7 +26,7 @@ body{margin:0;background:var(--paper);color:var(--ink);font-family:'Noto Serif T
 
 /* ---- Masthead / Nav ---- */
 header.masthead{background:var(--paper);border-bottom:2px solid var(--ink);padding:14px 20px 10px;position:relative;padding-top:calc(14px + env(safe-area-inset-top,0px));}
-.mast-row{display:flex;justify-content:space-between;align-items:center;font-size:12px;letter-spacing:.08em;color:var(--indigo);font-family:'Cormorant Garamond','Noto Serif TC',serif;font-style:italic;max-width:960px;margin:0 auto 8px;}
+.mast-row{display:flex;justify-content:center;align-items:center;font-size:12px;letter-spacing:.08em;color:var(--indigo);font-family:'Cormorant Garamond','Noto Serif TC',serif;font-style:italic;max-width:960px;margin:0 auto 8px;}
 .mast-row .mast-code{font-family:'Noto Serif TC',serif;font-style:normal;}
 
 /* ---- eye-care mode lever switch ---- */
@@ -440,9 +440,7 @@ html.eyecare #home .lead-sub{color:var(--ink);}
 
 <header class="masthead">
   <div class="mast-row">
-    <span class="mast-code">共和城總局出版</span>
     <div class="eye-toggle">
-      <span class="eye-toggle-label" id="eyeLabel">淺色模式</span>
       <span class="eye-switch" id="eyeSwitch" role="button" tabindex="0" aria-label="切換深色模式" onclick="toggleEyeMode()" onkeydown="if(event.key=='Enter'||event.key==' '){event.preventDefault();toggleEyeMode()}"></span>
     </div>
   </div>
@@ -908,7 +906,6 @@ function toggleVinyl(who){
 function toggleEyeMode(){
   var isOn = document.documentElement.classList.toggle('eyecare');
   document.getElementById('eyeSwitch').classList.toggle('on', isOn);
-  document.getElementById('eyeLabel').textContent = isOn ? '深色模式' : '淺色模式';
 }
 
 (function(){
